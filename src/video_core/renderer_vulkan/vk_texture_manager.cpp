@@ -139,7 +139,11 @@ vk::Image TextureManager::CreateDefaultTexture() {
 
     // TODO: create an actual VkImage [ZEP]
     LOG_INFO(Render_Vulkan, "Created default fallback texture");
-    return {};
+    // Create a Vulkan image using the provided VkImageCreateInfo
+    vk::Image default_image = memory_allocator.CreateImage(image_ci);
+
+    // Return the created Vulkan image
+    return default_image;
 }
 
 } // namespace Vulkan
