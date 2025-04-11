@@ -426,14 +426,15 @@ void RendererVulkan::InitializePlatformSpecific() {
     LOG_INFO(Render_Vulkan, "Platform-specific Vulkan initialization not implemented for this platform");
 #endif
 
+    
     // Create a compute buffer using the HybridMemory system if enabled
     if (Settings::values.use_gpu_memory_manager.GetValue()) {
         try {
             // Create a small compute buffer for testing
             const VkDeviceSize buffer_size = 1 * 1024 * 1024; // 1 MB
-            VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT |
             ComputeBuffer compute_buffer = hybrid_memory->CreateComputeBuffer(
                 buffer_size,
+                VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT |
                 VK_BUFFER_USAGE_TRANSFER_DST_BIT,
                 MemoryUsage::DeviceLocal);
 
