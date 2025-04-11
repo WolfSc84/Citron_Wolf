@@ -10,6 +10,8 @@
 #include <mutex>
 #include <atomic>
 #include <functional>
+#include <list>
+#include <thread>
 
 #include "common/common_types.h"
 #include "video_core/vulkan_common/vulkan_device.h"

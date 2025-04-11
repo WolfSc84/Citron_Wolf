@@ -4,6 +4,9 @@
 #include <cstring>
 #include <fstream>
 #include <algorithm>
+#include <list>       // Para std::list
+#include <thread>     // Para std::thread
+#include <fcntl.h>    // Para O_CLOEXEC y O_NONBLOCK
 
 #include "common/logging/log.h"
 #include "video_core/vulkan_common/hybrid_memory.h"
