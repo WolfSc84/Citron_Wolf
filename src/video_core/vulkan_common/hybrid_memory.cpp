@@ -174,8 +174,8 @@ void FaultManagedAllocator::FaultThread() {
 
                 if (page) {
                     struct uffdio_copy copy = {
-                        .src = (uintptr_t)page,
                         .dst = (uintptr_t)addr,
+                        .src = (uintptr_t)page,
                         .len = PageSize,
                         .mode = 0
                     };
