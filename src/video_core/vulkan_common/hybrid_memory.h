@@ -67,7 +67,7 @@ private:
     std::set<size_t> dirty_set;
     std::unordered_map<size_t, std::vector<u8>> compressed_store;
     std::mutex lock;
-    int64_t uffd = -1;
+    int uffd = -1;
     std::atomic<bool> running{false};
     std::thread fault_handler;
 

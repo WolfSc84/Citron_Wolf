@@ -77,7 +77,14 @@ void PredictiveReuseManager::ClearHistory() {
 
 #if defined(__linux__) || defined(__ANDROID__)
 void FaultManagedAllocator::Initialize(void* base, size_t size) {
-    uffd = syscall(SYS_userfaultfd, O_CLOEXEC | O_NONBLOCK);
+    //uffd = syscall(SYS_userfaultfd, O_CLOEXEC | O_NONBLOCK);
+    long syscall_result = syscall(SYS_userfaultfd, O_CLOEXEC | O_NONBLOCK);
+    if (syscall_result == -1) {
+        perror("userfaultfd syscall failed");
+        return;
+    }
+    uffd = static_cast<int>(syscall_result);
+
     if (uffd < 0) {
         LOG_ERROR(Render_Vulkan, "Failed to create userfaultfd, fault handling disabled");
         return;
